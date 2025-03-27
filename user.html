@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Home - AI_Chatbot{% endblock %}
+{% block content %}
+
+<!-- Hero Section -->
+<div class="hero" id="home-section">
+  <div class="hero-text">
+    <h1>Empower Yourself with AI Chatbot </h1>
+    <p>Experience the next generation of intelligent conversations with our AI chatbot, designed for seamless and engaging interactions.</p>
+
+    <h2>Welcome, {{ username }}!</h2>
+
+    <div class="hero-buttons" style="margin-top: 20px;">
+      <a href="{{ url_for('chat') }}">
+        <button class="chat-btn">Start Chatting</button>
+      </a>
+      <a href="{{ url_for('chat_history') }}">
+        <button class="logout-btn">Chat History</button>
+      </a>
+    </div>
+  </div>
+    
+  <!-- Right Side - Circular Image -->
+  <div class="hero-img">
+    <img src="{{ url_for('static', filename='images/roboot.png') }}" alt="Chatbot AI">
+  </div>
+</div>
+{% endblock %}
+
+  

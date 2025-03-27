@@ -1,0 +1,220 @@
+{% extends "base.html" %}
+
+{% block title %}About - AI_Chatbot{% endblock %}
+
+{% block content %}
+<style>
+  /* About Hero Section */
+  .about-hero {
+    text-align: center;
+    background: linear-gradient(120deg, #2c3e50, #3498db);
+    color: rgba(255, 255, 255, 0.395);
+    padding: 40px 20px; /* Reduced padding for smaller screens */
+    animation: fadeIn 1.5s ease-in-out;
+  }
+  .about-hero h1 {
+    font-size: 2.2rem; /* Reduced font size for smaller screens */
+    margin-bottom: 10px;
+    color: #98f1f0;
+  }
+  .about-hero p {
+    font-size: 21rem; /* Reduced font size for smaller screens */
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  .about-container {
+    text-align: center;
+    padding: 30px 20px; /* Reduced padding for smaller screens */
+  }
+  .section-title {
+    font-size: 3rem; /* Reduced font size for smaller screens */
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #e3b14c;
+  }
+  .about-cards {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    gap: 2rem; /* Reduced gap for smaller screens */
+    flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.1); /* 透明背景 */
+    border-radius: 12px;
+    padding: 20px; /* Reduced padding for smaller screens */
+    max-width: 450px; /* Reduced max-width for smaller screens */
+    text-align: center;
+    box-shadow: 
+      8px 8px 15px rgba(0, 0, 0, 0.2), /* 右下角阴影 */
+      -8px -8px 15px rgba(255, 255, 255, 0.1); /* 左上角高光 */
+    transition: transform 0.3s ease-in-out;
+    backdrop-filter: blur(10px); /* 毛玻璃效果 */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* 边框 */
+  }
+  .card:hover {
+    transform: scale(1.05);
+  }
+  .card i {
+    font-size: 30px; /* Reduced font size for smaller screens */
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: pink;
+  }
+  .card h3 {
+    font-size: 2rem; /* Reduced font size for smaller screens */
+    color: #ffffff;
+    margin-bottom: 8px;
+  }
+  .card p {
+    font-size: 1.2rem; /* Reduced font size for smaller screens */
+    color: #98f1f0;
+    line-height: 1.4;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  .about-text {
+    margin-top: 30px;
+    font-size: 1.2rem; /* Reduced font size for smaller screens */
+    max-width: 90%; /* Wider max-width on smaller screens */
+    margin-left: auto;
+    margin-right: auto;
+    font-family: cursive;
+  }
+
+  /* Team Section */
+  .team-container {
+    text-align: center;
+    padding: 30px 20px; /* Reduced padding for smaller screens */
+  }
+  .team-members {
+    display: flex;
+    flex-direction: row; /* Stack team members on smaller screens */
+    align-items: center;
+    gap: 15px; /* Reduced gap for smaller screens */
+    margin-top: 20px;
+    animation: fadeIn 1s ease-out;
+  }
+  .team-card {
+    display: flex;
+    align-items: center;
+    width: 90%; /* Full width on smaller screens */
+    max-width: 400px; /* Limit width to avoid extreme stretching */
+    height: auto; /* Adjust height to content */
+    border-radius: 8px;
+    box-shadow: 
+      5px 5px 10px rgba(0, 0, 0, 0.2), /* 右下角阴影 */
+      -5px -5px 10px rgba(255, 255, 255, 0.1); /* 左上角高光 */
+    transition: transform 0.3s ease-in-out;
+    backdrop-filter: blur(10px); /* 毛玻璃效果 */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* 边框 */
+    padding: 12px; /* Reduced padding for smaller screens */
+    transform: translateX(-50%);
+    animation: slideIn 0.8s ease-out forwards;
+    margin: 0 auto; /* Center the cards */
+  }
+  .card-left {
+    flex: 0 0 60px; /* Adjusted size for the image */
+    margin-right: 15px; /* Space between image and text */
+  }
+  .card-left img {
+    width: 50px; /* Smaller image size */
+    height: 50px;
+    border-radius: 50%; /* Round shape */
+    object-fit: cover; /* Ensure image scales correctly */
+  }
+  .card-right {
+    flex: 1; /* Take remaining space */
+    text-align: left;
+  }
+  .card-right h3 {
+    margin: 0;
+    font-size: 20px; /* Reduced font size for smaller screens */
+    font-weight: 600;
+  }
+  .card-right p {
+    margin: 5px 0 0;
+    font-size: 14px; /* Reduced font size for smaller screens */
+    color: #98f1f0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  /* Slide In and Fade Animation */
+  @keyframes slideIn {
+    0% {
+        transform: translateX(-100%); /* Off-screen to the left */
+    }
+    100% {
+        transform: translateX(0); /* Move to the original position */
+    }
+  }
+  @keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+  }
+  /* Animation Delay for Each Card */
+  .team-card:nth-child(1) {
+    animation-delay: 0.3s;
+  }
+  .team-card:nth-child(2) {
+    animation-delay: 0.6s;
+  }
+  .team-card:nth-child(3) {
+    animation-delay: 0.9s;
+  }
+</style>
+
+<!-- About Content with Cards -->
+<section class="about-container" id="about-section">
+  <h2 class="section-title">Why Choose Us?</h2>
+
+  <div class="about-cards">
+    <div class="card">
+      <i class="fa-solid fa-brain"></i>
+      <h3>Advanced AI</h3>
+      <p>Our chatbot leverages the latest AI technology to provide human-like conversations, making interactions natural, efficient, and highly engaging.</p>
+    </div>
+    <div class="card">
+      <i class="fa-solid fa-users"></i>
+      <h3>User-Friendly</h3>
+      <p>Designed for all users, our chatbot offers a smooth, intuitive experience with an easy-to-navigate interface, ensuring maximum convenience.</p>
+    </div>
+  </div>
+
+  <p class="about-text">
+    Experience the future of AI-powered communication with us. Our technology is built to ensure seamless interactions while prioritizing user ease and satisfaction.
+  </p>
+</section>
+
+<!-- Team Section -->
+<section class="team-container" id="testimonials_section">
+  <h2 class="section-title">Meet Our Team 🚀</h2>
+    <div class="team-members">
+      <div class="team-card">
+        <div class="card-left">
+          <img src="{{ url_for('static', filename='images/p45.jpg') }}" alt="Team Member">
+        </div>
+        <div class="card-right">
+          <h3>Hua Chen</h3>
+            <p>UI/UX Designer & Full Stack Developer</p>
+            <p> A creative UI/UX Designer focused on seamless user experiences.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="card-left">
+          <img src="{{ url_for('static', filename='images/boy.jpg') }}" alt="Team Member">
+        </div>
+        <div class="card-right">
+          <h3>Kiet Le</h3>
+            <p>Backend Developer & Testing Engineer</p>
+            <p>A skilled Backend Developer ensuring robust and efficient systems.</p>
+        </div>
+      </div>
+    </div>
+</section>
+{% endblock %}

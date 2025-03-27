@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block title %}Features - AI_Chatbot{% endblock %}
+
+{% block content %}
+<style>
+  /* Use Cases & Industries Section */
+  .usecase-container {
+    text-align: center;
+    padding: 40px 15px; /* Reduced padding for smaller screens */
+  }
+  .usecase-box {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px; /* Reduced gap for smaller screens */
+    margin-top: 15px;
+  }
+  .usecase {
+    padding: 20px; /* Reduced padding for smaller screens */
+    width: 90%; /* Full width on smaller screens */
+    max-width: 300px; /* Limit width to avoid extreme stretching */
+    border-radius: 8px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.2); /* 透明背景 */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    transition: transform 0.3s ease-in-out;
+    backdrop-filter: blur(10px); /* 毛玻璃效果 */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* 边框 */
+    transition: transform 0.3s ease-in-out;
+  }
+  .usecase:hover {
+    transform: translateY(-3px);
+  }
+  .usecase i {
+    font-size: 35px; /* Reduced font size for smaller screens */
+    color: pink;
+    margin-bottom: 12px;
+  }
+  .usecase h3 {
+    color: #98f1f0;
+    font-size: 20px; /* Reduced font size for smaller screens */
+    margin-bottom: 8px;
+  }
+  .usecase p {
+    font-size: 14px; /* Reduced font size for smaller screens */
+    color: #afe889;
+    font-family: cursive;
+  }
+  .section-title {
+    font-size: 2.5rem; /* Reduced font size for smaller screens */
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #e3b14c;
+  }
+
+  /* FAQ Section */
+  .faq {
+    text-align: center;
+    padding: 30px 15px; /* Reduced padding for smaller screens */
+    color: white;
+    border-radius: 8px;
+    margin: 30px auto;
+    width: 90%; /* Wider on smaller screens */
+    box-shadow: 
+        8px 8px 15px rgba(163, 177, 198, 0.1), /* 右下角阴影 */
+        -8px -8px 15px rgba(255, 255, 255, 0.1); /* 左上角高光 */
+      border: 1px solid rgba(255, 255, 255, 0.2); /* 边框 */
+  }
+  .faq h1 {
+    font-size: 28px; /* Reduced font size for smaller screens */
+    margin-bottom: 15px;
+    text-transform: uppercase;
+  }
+  .faq h3 {
+    font-size: 20px; /* Reduced font size for smaller screens */
+    margin-top: 12px;
+  }
+  .faq p {
+    font-size: 16px; /* Reduced font size for smaller screens */
+    margin-top: 6px;
+    color: #f1f1f1;
+  }
+</style>
+
+<!-- Use Cases & Industries -->
+<section class="usecase-container" id="usecase-section">
+  <h2 class="section-title">Where Can You Use Our Chatbot?</h2>
+  <div class="usecase-box">
+    <div class="usecase">
+      <i class="fa-solid fa-store"></i>
+      <h3>E-Commerce</h3>
+      <p>Provide 24/7 customer support, product recommendations, and order tracking.</p>
+    </div>
+    <div class="usecase">
+      <i class="fa-solid fa-stethoscope"></i>
+      <h3>Healthcare</h3>
+      <p>Assist patients with appointment booking and answering medical queries.</p>
+    </div>
+    <div class="usecase">
+      <i class="fa-solid fa-graduation-cap"></i>
+      <h3>Education</h3>
+      <p>Help students with learning materials, scheduling, and answering FAQs.</p>
+    </div>
+    <div class="usecase">
+      <i class="fa-solid fa-money-bill"></i>
+      <h3>Finance</h3>
+      <p>Provide instant responses to banking inquiries and financial advice.</p>
+    </div>
+    <div class="usecase">
+      <i class="fa-solid fa-hotel"></i>
+      <h3>Hospitality</h3>
+      <p>Enhance guest experience with booking assistance and personalized recommendations.</p>
+    </div>
+    <div class="usecase">
+      <i class="fa-solid fa-headset"></i>
+      <h3>Customer Support</h3>
+      <p>Automate responses to common inquiries and improve response times for businesses.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="faq">
+    <h1>FAQ?</h1>
+    <h3>🆓 Is it free to use?</h3>
+    <p>We offer a free basic version. Advanced features are available in our premium plans.</p>
+  </div>
+</section>
+{% endblock %}

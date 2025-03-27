@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Home - AI_Chatbot{% endblock %}
+{% block content %}
+
+<!-- Hero Section -->
+<div class="hero" id="home-section">
+  <div class="hero-text">
+    <h1>Empower Yourself with AI Chatbot </h1>
+    <p>Experience the next generation of intelligent conversations with our AI chatbot, designed for seamless and engaging interactions.</p>
+
+    <p style="color: orange; margin:0; line-height:1.2;">Are you a user? Please first login.</p>
+    <p style="color: orange; margin:0; line-height:1.2;">Not yet? Register an account.</p>
+
+    <div class="hero-buttons" style="margin-top: 20px;">
+      <a href="{{ url_for('login') }}">
+        <button class="chat-btn">Login</button>
+      </a>
+      <a href="{{ url_for('register') }}">
+        <button class="logout-btn">Register</button>
+      </a>
+    </div>
+  </div>
+    
+  <!-- Right Side - Circular Image -->
+  <div class="hero-img">
+    <img src="{{ url_for('static', filename='images/roboot.png') }}" alt="Chatbot AI">
+  </div>
+</div>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+{% endblock %}

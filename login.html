@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+{% block title %}Login - AI_Chatbot{% endblock %}
+{% block content %}
+<style>
+  main {
+    padding: 20px;
+    margin-right: 35%;
+    width: 1000px;
+    height: 900px;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+  }
+  .login-container {
+    width: 600px;
+    height: 315px;
+    margin: 0 auto;
+    margin-top: 30%;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+    backdrop-filter: blur(150px);
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Lighter purple border */
+  }
+  .left-container {
+    display: inline-block;
+    width: 330px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    padding: 60px;
+    background-image: linear-gradient(to bottom right, rgba(118,76,163, 0.7), rgba(92, 103, 211, 0.7));
+  }
+  .title {
+    color: #fff;
+    font-size: 25px;
+    font-weight: 200;
+    padding-top: 0;
+    margin-top: 0;
+    margin-bottom: 30px;
+  }
+  .title span {
+    border-bottom: 3px solid rgb(237, 221, 22);
+  }
+  input-container {
+    padding: 20px 0;
+  }
+  input {
+    border: 0;
+    background: none;
+    outline: none;
+    color: #fff;
+    margin: 20px 0;
+    display: block;
+    width: 100%;
+    padding: 5px 0;
+    transition: .2s;
+    border-bottom: 1px solid rgb(199, 191, 219);
+  }
+  input:hover {
+    border-bottom-color: #fff;
+  }
+  ::-webkit-input-placeholder {
+    color: rgb(199, 191, 219);
+  }
+  .message-container {
+    font-size: 14px;
+    transition: .2s;
+    color: rgb(203, 247, 128);
+    cursor: pointer;
+    text-decoration: underline;
+    margin-right: 15px;
+    padding-left: 200px;
+  }
+  .message-container:hover {
+    color: #fff;
+  }
+  .right-container {
+    width: 145px;
+    display: inline-block;
+    height: calc(100%-120px);
+    vertical-align: top;
+    padding: 60px 0;
+  }
+  .regist-container {
+    text-align: center;
+    color:#fff;
+    font-size: 18px;
+    font-weight: 200;
+  }
+  .regist-container span {
+    border-bottom: 3px solid rgb(237, 221, 22);
+  }
+  .action-container {
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    top: 160px;
+  }
+  .action-container span {
+    border: 1px solid rgb(237, 221, 22);
+    padding: 10px;
+    display: inline;
+    line-height: 20px;
+    border-radius: 20px;
+    position: absolute;
+    bottom: 10px;
+    left: calc(72px - 30px);
+    transition: .2s;
+    cursor: pointer;
+  }
+  .action-container span:hover {
+    background-color: rgb(237, 221, 22);
+    color: rgb(95, 76, 194);
+  }
+
+  .neumorphism-btn {
+    display: inline-block;
+    padding: 10px 20px; /* 按钮内边距 */
+    font-size: 16px; /* 字体大小 */
+    color: #6c757d; /* 文字颜色 */
+    background-color: #d0d5dc; /* 背景颜色 */
+    border-radius: 15px; /* 圆角 */
+    border: none; /* 去掉边框 */
+    cursor: pointer; /* 鼠标悬停时显示手型 */
+    box-shadow: 
+      5px 5px 10px rgba(163, 177, 198, 0.6), /* 右下角阴影 */
+      -5px -5px 10px rgba(255, 255, 255, 0.3); /* 左上角高光 */
+    transition: all 0.3s ease; /* 平滑过渡效果 */
+  }
+  /* 悬停效果 */
+  .neumorphism-btn:hover {
+    box-shadow: 
+      4px 4px 10px rgba(163, 177, 198, 0.6), /* 缩小阴影 */
+      -4px -4px 10px rgba(240, 240, 240, 0.5); /* 缩小高光 */
+  }
+  /* 点击效果 */
+  .neumorphism-btn:active {
+    box-shadow: 
+      inset 4px 4px 10px rgba(163, 177, 198, 0.6), /* 内阴影 */
+      inset -4px -4px 10px rgba(255, 255, 255, 0.5); /* 内高光 */
+  }
+</style>
+<main>
+  <section>
+    <div class="login-container">
+      <div class="left-container">
+        <div class="title"><span>Login</span></div>
+        <form id="login-form" action="/login" method="POST">
+          <div class="input-container">
+            <input type="text" name="username" placeholder="Username" required />
+            <input type="password" name="password" placeholder="Password" required />
+          </div>
+          <div class="message-container">
+            <span>Forget password?</span>
+          </div>
+        </form>  
+      </div>
+      <div class="right-container">
+        <div class="regist-container">
+          <span class="neumorphism-btn" onclick="window.location.href='/register'">Sign up</span>
+        </div>
+        <div class="action-container">
+          <span onclick="document.getElementById('login-form').submit()">Login</span>
+        </div>  
+      </div>
+    </div>  
+  </section>
+</main>
+{% endblock %}

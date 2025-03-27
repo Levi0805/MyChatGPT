@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+</head>
+<style>
+</style>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <a href="#">
+        <img src="{{ url_for('static', filename='images/cartoon.png') }}" alt="Chatbot Logo" class="logo-img" />
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="{{url_for('home')}}">Home</a></li>
+      <li><a href="{{url_for('about')}}">About</a></li>
+      <li><a href="{{url_for('features')}}">Features</a></li>
+    </ul>  
+    <div class="auth-buttons">
+      {% if 'username' in session %}
+        <a href="{{ url_for('profile', username=session['username']) }}" class="username">
+          {{ session['username'][0]|upper }}
+        </a>
+        <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+      {% else %}
+        <button class="login-btn" onclick="window.location.href='/login'">Login</button>
+        <button class="register-btn" onclick="window.location.href='/register'">Register</button>
+      {% endif %}
+    </div>
+  </nav>
+  
+  <!-- Flash Messages -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div id="flash-popup" class="popup alert alert-{{ category }}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <!-- JavaScript to Show and Hide Popup -->
+  <script>
+    // Wait for the DOM to load
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get the popup element
+      const popup = document.getElementById('flash-popup');
+
+      // If the popup exists, show it and hide it after 5 seconds
+      if (popup) {
+        // Show the popup
+        popup.style.display = 'block';
+
+        // Check if the message is "Register successfully, please login."
+        if (popup.textContent.includes("Register successfully, please login.")) {
+          // Redirect to login.html after 2.5 seconds
+          setTimeout(function() {
+            window.location.href = "{{ url_for('login') }}";
+          }, 2500);
+        } else {
+          // Hide the popup after 2.5 seconds for other messages
+          setTimeout(function() {
+            popup.style.display = 'none';
+          }, 2500);
+        }
+      }   
+    });
+  </script>
+
+  <!-- Main content block-->
+  {% block content %}{% endblock %}
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy;  2025 Chatbot Company. All rights reserved. </p>
+  </footer>
+</body>
+</html>

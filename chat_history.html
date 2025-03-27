@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block title %}Home - AI_Chatbot{% endblock %}
+{% block content %}
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .history {
+    background: rgba(255, 255, 255, 0.1); /* 透明背景 */
+    border-radius: 12px;
+    backdrop-filter: blur(10px); /* 毛玻璃效果 */
+    box-shadow: 
+      8px 8px 15px rgba(0, 0, 0, 0.2), /* 右下角阴影 */
+      -8px -8px 15px rgba(255, 255, 255, 0.1); /* 左上角高光 */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* 边框 */
+  
+    padding: 20px; /* Reduced padding for smaller screens*/
+    justify-content: center;
+    width: 1000px;
+    height: 900px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .chat-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+  }
+  .chat-container div {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  strong {
+    font-weight: bold;
+  }
+
+  h1{
+    margin-top: -50px;
+    margin-bottom: -30px;
+    padding: 0;
+    font-size: 32px;
+    color: gold;
+    flex-grow: 1;
+  }
+
+  .neumorphism-btn {
+    display: inline-block;
+    justify-content: space-between;
+    margin-left: 800px;
+    margin-bottom: 10px;
+    margin-top: 0;
+    padding: 10px 20px; /* 按钮内边距 */
+    font-size: 16px; /* 字体大小 */
+    color: #ba06f7; /* 文字颜色 */
+    background-color: #d0d5dc; /* 背景颜色 */
+    border-radius: 15px; /* 圆角 */
+    border: none; /* 去掉边框 */
+    cursor: pointer; /* 鼠标悬停时显示手型 */
+    box-shadow: 
+      5px 5px 10px rgba(163, 177, 198, 0.6), /* 右下角阴影 */
+      -5px -5px 10px rgba(255, 255, 255, 0.3); /* 左上角高光 */
+    transition: all 0.3s ease; /* 平滑过渡效果 */
+  }
+  .neumorphism-btn:hover {
+    box-shadow: 
+      4px 4px 10px rgba(163, 177, 198, 0.6), /* 缩小阴影 */
+      -4px -4px 10px rgba(240, 240, 240, 0.5); /* 缩小高光 */
+  }
+  .neumorphism-btn:active {
+    box-shadow: 
+      inset 4px 4px 10px rgba(163, 177, 198, 0.6), /* 内阴影 */
+      inset -4px -4px 10px rgba(255, 255, 255, 0.5); /* 内高光 */
+  }
+</style>
+
+<div class="container">
+  <div>
+    <h1>Your Chat History📜</h1>
+    <span class="neumorphism-btn" onclick="window.location.href='/chat'">Back to Chat</span>
+  </div>
+  <div class="history">
+    <div class="chat-container">
+      {% for chat in history %}
+        <div>
+          <strong style="color: #aaff00;">You:</strong> {{ chat.user_message }}<br>
+          <strong style="color: gold;">Bot:</strong> {{ chat.bot_response|format_response|safe }}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>  
+{% endblock %}
